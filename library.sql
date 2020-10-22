@@ -12,13 +12,13 @@ CREATE TABLE Loans (
     );
 
 INSERT INTO Book (ISBN, Title, Author, Call_Number, Pages)
-  VALUES (1234567, "Cheese", "Michael Eddins", "13131313", 90);
+  VALUES (1234567, 'Cheese', 'Michael Eddins', '13131313', 90);
 
 INSERT INTO Book 
-  VALUES (8005882300, "Empire", "Grant Kelly", "8675309AB", 300);
+  VALUES (8005882300, 'Empire', 'Grant Kelly', '8675309AB', 300);
 
 INSERT INTO Loans
-  VALUES (90604010, "Big Chungus");
+  VALUES (90604010, 'Big Chungus');
 
 INSERT INTO Loans
-  VALUES (345345894689, "Epic Style");
+  VALUES (345345894689, 'Epic Style');
