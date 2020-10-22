@@ -1,13 +1,13 @@
 CREATE TABLE Book (
     ISBN int,
-    Title string,
-    Author string,
-    Call_Number string,
+    Title varchar(255),
+    Author varchar(255),
+    Call_Number varchar(255),
     Pages int
     );
 
 CREATE TABLE Loans (
     ISBN int,
-    Patron string
+    Patron varchar(255)
     );
 
