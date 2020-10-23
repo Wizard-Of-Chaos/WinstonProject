@@ -13,6 +13,8 @@
 #include <QApplication>
 #include <QLabel>
 #include <QDockWidget>
+#include <QDialogButtonBox>
+#include <QFormLayout>
 
 //Include tower mark three. Direct all complaints about its height to:
 //Alexander Wiecking, Michael Eddins, or Grant Kelly
@@ -71,8 +73,43 @@ Window::~Window()
 void Window::query()
 {
 }
-void Window::submit()
+void Window::submit() //This is gonna be some arcane shenanigans.
 {
+	QDialog dialog(this);
+	QFormLayout val_submit(&dialog);
+	QList<QLineEdit*> fields;
+	QLineEdit* isbn_val = new QLineEdit(&dialog);
+	QLineEdit* title_val = new QLineEdit(&dialog);
+	QLineEdit* author_val = new QLineEdit(&dialog);
+	QLineEdit* call_val = new QLineEdit(&dialog);
+	QLineEdit* page_val = new QLineEdit(&dialog);
+
+	val_submit.addRow(tr("ISBN:"), isbn_val);
+	val_submit.addRow(tr("Title:"), title_val);
+	val_submit.addRow(tr("Author:"), author_val);
+	val_submit.addRow(tr("Call number:"), call_val);
+	val_submit.addRow(tr("Pagecount:"), page_val);
+	QDialogButtonBox buttons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, Qt::Horizontal, &dialog);
+	val_submit.addRow(&buttons);
+	QObject::connect(&buttons, SIGNAL(accepted()), &dialog, SLOT(accept()));
+	QObject::connect(&buttons, SIGNAL(rejected()), &dialog, SLOT(reject()));
+
+	if(dialog.exec() == QDialog::Accepted) {
+		int isbn = isbn_val->text().toInt();
+		QString title = title_val->text();
+		QString author = author_val->text();
+		QString call = call_val->text();
+		int page = isbn_val->text().toInt();
+		QSqlQuery q;
+		q.prepare("INSERT INTO Book(ISBN, Title, Author, Call_Number, Pages)"
+			"VALUES(?, ?, ?, ?, ?);");
+		q.addBindValue(isbn);
+		q.addBindValue(title);
+		q.addBindValue(author);
+		q.addBindValue(call);
+		q.addBindValue(page);
+		q.exec();
+	}
 }
 void Window::forward()
 {
