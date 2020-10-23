@@ -5,6 +5,7 @@
 #include <QPushButton>
 #include <QtSql>
 #include <string>
+#include "query.h"
 
 #ifndef __WINDOW_H
 #define __WINDOW_H
@@ -21,7 +22,7 @@ class Window : public QMainWindow
 	private:
 		QToolBar* m_toolbar;
 		QAction* m_submit;
-		QAction* m_query;
+		QAction* m_querybutton;
 		QAction* m_quit;
 		QAction* m_forward;
 		QAction* m_back;
@@ -32,6 +33,8 @@ class Window : public QMainWindow
 		QLabel* m_f3;
 		QLabel* m_f4;
 		QLabel* m_f5;
+		Query* m_display;
+		QSqlQuery* m_query;
 		int m_pos;
 		std::string m_type;		
 
