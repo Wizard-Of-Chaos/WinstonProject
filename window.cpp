@@ -72,6 +72,9 @@ Window::~Window()
 }
 void Window::query()
 {
+	bool ok;
+	QString search_val = QInputDialog::getText(this, tr("Search"), tr("Enter in the name, isbn, author, call number or pagecount of a book and we'll try and find it for you. [UNIMPLEMENTED]"), QLineEdit::Normal, QDir::home().dirName(), &ok);
+	//do some stuff with the search value later
 }
 void Window::submit() //This is gonna be some arcane shenanigans.
 {
