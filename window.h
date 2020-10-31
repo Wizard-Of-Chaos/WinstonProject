@@ -10,6 +10,7 @@
 #ifndef __WINDOW_H
 #define __WINDOW_H
 
+class QueryWindow;
 class QVBoxLayout;
 class QMouseEvent;
 class QMenuBar;
@@ -36,7 +37,7 @@ class Window : public QMainWindow
 		Query* m_display;
 		QSqlQuery* m_query;
 		int m_pos;
-		std::string m_type;		
+		std::string m_type;	
 
 	private slots:
 		void query();
