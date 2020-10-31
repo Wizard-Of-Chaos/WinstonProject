@@ -6,6 +6,7 @@
 #include <QtSql>
 #include <string>
 #include <QTableWidget>
+#include <QToolButton>
 #include "query.h"
 
 #ifndef __WINDOW_H
@@ -23,8 +24,11 @@ class Window : public QMainWindow
 	Q_OBJECT
 	private:
 		QToolBar* m_toolbar;
+		QMenu* m_menu;
+		QToolButton* m_qmenu;
 		QAction* m_submit;
-		QAction* m_querybutton;
+		QAction* m_bookquery;
+		QAction* m_loanquery;
 		QAction* m_openloans;
 		QAction* m_quit;
 		QPushButton* m_forward;
@@ -42,7 +46,8 @@ class Window : public QMainWindow
 		std::string m_type;	
 
 	private slots:
-		void query();
+		void bookquery();
+		void loanquery();
 		void openloans();
 		void submit();
 		void forward();

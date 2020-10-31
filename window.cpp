@@ -27,16 +27,26 @@ Window::Window() : QMainWindow()
 	m_toolbar = new QToolBar(this);
 	addToolBar(m_toolbar);
 	m_submit = new QAction(tr("Submit"));
-	m_querybutton = new QAction(tr("Query"));
+	m_menu = new QMenu;
+	m_qmenu = new QToolButton;
+	m_qmenu->setText(tr("Queries"));
+	m_qmenu->setPopupMode(QToolButton::InstantPopup);
+	m_bookquery = new QAction(tr("Book Query"));
+	m_loanquery = new QAction(tr("Loan Query"));
 	m_quit = new QAction(tr("Quit"));
 	m_openloans = new QAction(tr("Open Loans"));
 
 	m_forward = new QPushButton(tr("Next"));
 	m_back = new QPushButton(tr("Previous"));
 
+	m_menu->addAction(m_bookquery);
+	m_menu->addAction(m_loanquery);
+	m_menu->addSeparator();
+	m_qmenu->setMenu(m_menu);
+
 	m_toolbar->addSeparator();
+	m_toolbar->addWidget(m_qmenu);
 	m_toolbar->addAction(m_submit);
-	m_toolbar->addAction(m_querybutton);
 	m_toolbar->addAction(m_openloans);
 	m_toolbar->setMovable(false);
 	m_toolbar->addSeparator();
@@ -59,7 +69,8 @@ Window::Window() : QMainWindow()
 	m_pos = 0;
 
 	connect(m_submit, SIGNAL(triggered()), this, SLOT(submit()));
-	connect(m_querybutton, SIGNAL(triggered()), this, SLOT(query()));
+	connect(m_bookquery, SIGNAL(triggered()), this, SLOT(bookquery()));
+	connect(m_loanquery, SIGNAL(triggered()), this, SLOT(loanquery()));
 	connect(m_quit, SIGNAL(triggered()), this, SLOT(close()));
 	connect(m_openloans, SIGNAL(triggered()), this, SLOT(openloans()));
 	connect(m_forward, SIGNAL(clicked()), this, SLOT(forward()));
@@ -72,11 +83,15 @@ Window::Window() : QMainWindow()
 Window::~Window()
 {
 }
-void Window::query()
+void Window::bookquery()
 {
   	QueryWindow* m_QueryWindow = new QueryWindow;
 	m_QueryWindow->show();
 }
+void Window::loanquery()
+{
+}
+
 void Window::openloans()
 {
 	LoanWindow* m_loanwindow = new LoanWindow;
