@@ -1,39 +1,36 @@
 #include "query.h"
 #include <QVBoxLayout>
-#include <QLabel>
 
-Query::Query(QLabel* f1, QLabel* f2)
+Query::Query(QTableWidgetItem* f1, QTableWidgetItem* f2, QPushButton* next, QPushButton* prev)
 {
-	m_f1 = f1;
-	m_f2 = f2;
-	m_f3 = new QLabel(" ");
-	m_f4 = new QLabel(" ");
-	m_f5 = new QLabel(" ");
+	m_table = new QTableWidget;
 	QVBoxLayout* layout = new QVBoxLayout;
-	layout->addWidget(m_f1);
-	layout->addWidget(m_f2);
-	layout->addWidget(m_f3);
-	layout->addWidget(m_f4);
-	layout->addWidget(m_f5);
+	m_table->setColumnCount(2);
+	m_table->setHorizontalHeaderItem(0, f1);
+	m_table->setHorizontalHeaderItem(1, f2);
+	layout->addWidget(m_table);
+	layout->addWidget(next);
+	layout->addWidget(prev);
 	setLayout(layout);
 }
 
-Query::Query(QLabel* f1, QLabel* f2, QLabel* f3, QLabel* f4, QLabel* f5)
+Query::Query(QTableWidgetItem* f1, QTableWidgetItem* f2, QTableWidgetItem* f3, QTableWidgetItem* f4, QTableWidgetItem* f5, QPushButton* next, QPushButton* prev)
 {
-	m_f1 = f1;
-	m_f2 = f2;
-	m_f3 = f3;
-	m_f4 = f4;
-	m_f5 = f5;
+	m_table = new QTableWidget;
 	QVBoxLayout* layout = new QVBoxLayout;
-	layout->addWidget(m_f1);
-	layout->addWidget(m_f2);
-	layout->addWidget(m_f3);
-	layout->addWidget(m_f4);
-	layout->addWidget(m_f5);
+	m_table->setColumnCount(5);
+	m_table->setHorizontalHeaderItem(0, f1);
+	m_table->setHorizontalHeaderItem(1, f2);
+	m_table->setHorizontalHeaderItem(2, f3);
+	m_table->setHorizontalHeaderItem(3, f4);
+	m_table->setHorizontalHeaderItem(4, f5);
+	layout->addWidget(m_table);
+	layout->addWidget(next);
+	layout->addWidget(prev);
 	setLayout(layout);
 }
 
 Query::~Query()
 {
+	delete m_table;
 }

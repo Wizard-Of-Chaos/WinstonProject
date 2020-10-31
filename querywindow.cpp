@@ -44,7 +44,6 @@ QueryWindow::QueryWindow() : QWidget()
 	fullView->setHorizontalHeaderItem(3, header4);
 	fullView->setHorizontalHeaderItem(4, header5);
 	
-
 	connect(submitButton, SIGNAL(clicked()), this, SLOT(submit()));
 }
 
@@ -64,36 +63,33 @@ QueryWindow::~QueryWindow()
 void QueryWindow::submit()
 {
   	int count = 0;
-	QSqlDatabase m_db = QSqlDatabase::addDatabase("QSQLITE");
-        m_db.setDatabaseName("library.db");
-        m_db.open();
-        QSqlQuery* m_query = new QSqlQuery;
+        QSqlQuery* window_query = new QSqlQuery;
 	QString title = titleEdit->text();
 	QString author = authorEdit->text();
 	QString callNum = callEdit->text();
 	if (title.isEmpty() == false)
 	{
-        	m_query->prepare("SELECT ISBN, Title, Author, Call_Number, Pages FROM Book WHERE Title = ?;");
-		m_query->addBindValue(title);
+        	window_query->prepare("SELECT ISBN, Title, Author, Call_Number, Pages FROM Book WHERE Title = ?;");
+		window_query->addBindValue(title);
 	}
 	else if (author.isEmpty() == false)
 	{	
-        	m_query->prepare("SELECT ISBN, Title, Author, Call_Number, Pages FROM Book WHERE Author = ?;");
-		m_query->addBindValue(author);
+        	window_query->prepare("SELECT ISBN, Title, Author, Call_Number, Pages FROM Book WHERE Author = ?;");
+		window_query->addBindValue(author);
 	}
 	else if (callNum.isEmpty() == false)
 	{
-        	m_query->prepare("SELECT ISBN, Title, Author, Call_Number, Pages FROM Book WHERE Call_Number = ?;");
-		m_query->addBindValue(callNum);
+        	window_query->prepare("SELECT ISBN, Title, Author, Call_Number, Pages FROM Book WHERE Call_Number = ?;");
+		window_query->addBindValue(callNum);
 	}
-	m_query->exec();
-	while(m_query->next())
+	window_query->exec();
+	while(window_query->next())
 	{
-		QTableWidgetItem* isbnItem = new QTableWidgetItem(m_query->value(0).toString());
-		QTableWidgetItem* titleItem = new QTableWidgetItem(m_query->value(1).toString());
-		QTableWidgetItem* authorItem = new QTableWidgetItem(m_query->value(2).toString());
-		QTableWidgetItem* callNumItem = new QTableWidgetItem(m_query->value(3).toString());
-		QTableWidgetItem* pagesItem = new QTableWidgetItem(m_query->value(4).toString());
+		QTableWidgetItem* isbnItem = new QTableWidgetItem(window_query->value(0).toString());
+		QTableWidgetItem* titleItem = new QTableWidgetItem(window_query->value(1).toString());
+		QTableWidgetItem* authorItem = new QTableWidgetItem(window_query->value(2).toString());
+		QTableWidgetItem* callNumItem = new QTableWidgetItem(window_query->value(3).toString());
+		QTableWidgetItem* pagesItem = new QTableWidgetItem(window_query->value(4).toString());
 		fullView->insertRow(count);
 		fullView->setItem(count, 0, isbnItem);
 		fullView->setItem(count, 1, titleItem);

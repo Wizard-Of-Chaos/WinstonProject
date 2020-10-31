@@ -5,6 +5,7 @@
 #include <QPushButton>
 #include <QtSql>
 #include <string>
+#include <QTableWidget>
 #include "query.h"
 
 #ifndef __WINDOW_H
@@ -24,16 +25,17 @@ class Window : public QMainWindow
 		QToolBar* m_toolbar;
 		QAction* m_submit;
 		QAction* m_querybutton;
+		QAction* m_openloans;
 		QAction* m_quit;
-		QAction* m_forward;
-		QAction* m_back;
+		QPushButton* m_forward;
+		QPushButton* m_back;
 		QVBoxLayout* m_layout;
 		QSqlDatabase m_db;
-		QLabel* m_f1;
-		QLabel*	m_f2;
-		QLabel* m_f3;
-		QLabel* m_f4;
-		QLabel* m_f5;
+		QTableWidgetItem* m_f1;
+		QTableWidgetItem* m_f2;
+		QTableWidgetItem* m_f3;
+		QTableWidgetItem* m_f4;
+		QTableWidgetItem* m_f5;
 		Query* m_display;
 		QSqlQuery* m_query;
 		int m_pos;
@@ -41,6 +43,7 @@ class Window : public QMainWindow
 
 	private slots:
 		void query();
+		void openloans();
 		void submit();
 		void forward();
 		void back();
