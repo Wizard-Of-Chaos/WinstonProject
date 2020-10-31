@@ -101,7 +101,6 @@ void Window::submit() //This is gonna be some arcane shenanigans.
 {
 	QDialog dialog(this);
 	QFormLayout val_submit(&dialog);
-	QList<QLineEdit*> fields;
 	QLineEdit* isbn_val = new QLineEdit(&dialog);
 	QLineEdit* title_val = new QLineEdit(&dialog);
 	QLineEdit* author_val = new QLineEdit(&dialog);
