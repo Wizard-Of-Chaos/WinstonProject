@@ -90,6 +90,8 @@ void Window::bookquery()
 }
 void Window::loanquery()
 {
+	LoanQueryWindow* m_loanquerywindow = new LoanQueryWindow;
+	m_loanquerywindow->show();
 }
 
 void Window::openloans()

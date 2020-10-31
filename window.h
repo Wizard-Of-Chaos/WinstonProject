@@ -8,6 +8,7 @@
 #include <QTableWidget>
 #include <QToolButton>
 #include "query.h"
+#include "loanquerywindow.h"
 
 #ifndef __WINDOW_H
 #define __WINDOW_H
