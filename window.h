@@ -41,6 +41,8 @@ class Window : public QMainWindow
 		QTableWidgetItem* m_f3;
 		QTableWidgetItem* m_f4;
 		QTableWidgetItem* m_f5;
+		QTableWidgetItem* m_f6; // Binding and Publisher
+		QTableWidgetItem* m_f7;
 		Query* m_display;
 		QSqlQuery* m_query;
 		int m_pos;

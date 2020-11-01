@@ -13,7 +13,7 @@ class Query : public QWidget
 	private:
 		QTableWidget* m_table;
 	public:
-		Query(QTableWidgetItem* f1, QTableWidgetItem* f2, QTableWidgetItem* f3, QTableWidgetItem* f4, QTableWidgetItem* f5, QPushButton* next, QPushButton* prev);
+		Query(QTableWidgetItem* f1, QTableWidgetItem* f2, QTableWidgetItem* f3, QTableWidgetItem* f4, QTableWidgetItem* f5, QTableWidgetItem* f6, QTableWidgetItem* f7, QPushButton* next, QPushButton* prev);
 		Query(QTableWidgetItem* f1, QTableWidgetItem* f2, QPushButton* next, QPushButton* prev);
 		~Query();
 };
