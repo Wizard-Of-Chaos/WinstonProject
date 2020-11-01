@@ -31,13 +31,17 @@ LoanQueryWindow::LoanQueryWindow() : QWidget()
         QTableWidgetItem* header3 = new QTableWidgetItem ("Author");
         QTableWidgetItem* header4 = new QTableWidgetItem ("Call #");
         QTableWidgetItem* header5 = new QTableWidgetItem ("Pages");
+	QTableWidgetItem* header6 = new QTableWidgetItem ("Binding");
+	QTableWidgetItem* header7 = new QTableWidgetItem ("Publisher");
 
-        m_table->setColumnCount(5);
+        m_table->setColumnCount(7);
         m_table->setHorizontalHeaderItem(0, header1);
         m_table->setHorizontalHeaderItem(1, header2);
         m_table->setHorizontalHeaderItem(2, header3);
         m_table->setHorizontalHeaderItem(3, header4);
         m_table->setHorizontalHeaderItem(4, header5);
+	m_table->setHorizontalHeaderItem(5, header6);
+	m_table->setHorizontalHeaderItem(6, header7);
 
         connect(m_submit, SIGNAL(clicked()), this, SLOT(submit()));
 
@@ -62,7 +66,7 @@ void LoanQueryWindow::submit()
         QString patron = m_patron->text();
         QString author = m_author->text();
 	if (patron.isEmpty() == false && author.isEmpty()== false) {
-		book_query->prepare("SELECT ISBN, Title, Author, Call_Number, Pages FROM Book WHERE Author = ?;");
+		book_query->prepare("SELECT ISBN, Title, Author, Call_Number, Pages, Binding, Publisher FROM Book WHERE Author = ?;");
 		book_query->addBindValue(author);
 		loan_query->prepare("SELECT ISBN, Patron FROM Loans WHERE Patron = ?;");
 		loan_query->addBindValue(patron);
@@ -90,12 +94,16 @@ void LoanQueryWindow::submit()
                 	QTableWidgetItem* authorItem = new QTableWidgetItem(m.value(2).toString());
                 	QTableWidgetItem* callNumItem = new QTableWidgetItem(m.value(3).toString());
                 	QTableWidgetItem* pagesItem = new QTableWidgetItem(m.value(4).toString());
+			QTableWidgetItem* bindingItem = new QTableWidgetItem(m.value(5).toString());
+			QTableWidgetItem* publisherItem = new QTableWidgetItem(m.value(6).toString());
 			m_table->insertRow(count);
 		        m_table->setItem(count, 0, isbnItem);
 	                m_table->setItem(count, 1, titleItem);
         	        m_table->setItem(count, 2, authorItem);
              	 	m_table->setItem(count, 3, callNumItem);
              		m_table->setItem(count, 4, pagesItem);
+			m_table->setItem(count, 5, bindingItem);
+			m_table->setItem(count, 6, publisherItem);
               		++count;
 		}
 	}
