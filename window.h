@@ -32,6 +32,7 @@ class Window : public QMainWindow
 		QAction* m_loanquery;
 		QAction* m_openloans;
 		QAction* m_quit;
+		QAction* m_openauthorpatron;
 		QPushButton* m_forward;
 		QPushButton* m_back;
 		QVBoxLayout* m_layout;
@@ -52,6 +53,7 @@ class Window : public QMainWindow
 		void bookquery();
 		void loanquery();
 		void openloans();
+		void openauthpat();
 		void submit();
 		void forward();
 		void back();

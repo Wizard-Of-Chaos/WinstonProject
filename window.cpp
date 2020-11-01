@@ -17,6 +17,7 @@
 #include <QFormLayout>
 #include "querywindow.h"
 #include "loanwindow.h"
+#include "authorpatronwindow.h"
 
 //Include tower mark three. Direct all complaints about its height to:
 //Alexander Wiecking, Michael Eddins, or Grant Kelly
@@ -35,6 +36,7 @@ Window::Window() : QMainWindow()
 	m_loanquery = new QAction(tr("Loan Query"));
 	m_quit = new QAction(tr("Quit"));
 	m_openloans = new QAction(tr("Open Loans"));
+	m_openauthorpatron = new QAction(tr("Author/Patron Search"));
 
 	m_forward = new QPushButton(tr("Next"));
 	m_back = new QPushButton(tr("Previous"));
@@ -48,6 +50,7 @@ Window::Window() : QMainWindow()
 	m_toolbar->addWidget(m_qmenu);
 	m_toolbar->addAction(m_submit);
 	m_toolbar->addAction(m_openloans);
+	m_toolbar->addAction(m_openauthorpatron);
 	m_toolbar->setMovable(false);
 	m_toolbar->addSeparator();
 	m_toolbar->addAction(m_quit);
@@ -77,6 +80,7 @@ Window::Window() : QMainWindow()
 	connect(m_openloans, SIGNAL(triggered()), this, SLOT(openloans()));
 	connect(m_forward, SIGNAL(clicked()), this, SLOT(forward()));
 	connect(m_back, SIGNAL(clicked()), this, SLOT(back()));
+	connect(m_openauthorpatron, SIGNAL(triggered()), this, SLOT(openauthpat()));
 	this->layout()->setMenuBar(m_toolbar);
 	setCentralWidget(m_display);
 	this->show();
@@ -94,6 +98,12 @@ void Window::loanquery()
 {
 	LoanQueryWindow* m_loanquerywindow = new LoanQueryWindow;
 	m_loanquerywindow->show();
+}
+
+void Window::openauthpat()
+{
+	AuthorPatronWindow* m_authorpatronwindow = new AuthorPatronWindow;
+	m_authorpatronwindow->show();
 }
 
 void Window::openloans()

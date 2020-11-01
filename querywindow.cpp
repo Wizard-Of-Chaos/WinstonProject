@@ -15,7 +15,7 @@ QueryWindow::QueryWindow() : QWidget()
 	submitButton = new QPushButton(tr("Submit"));
 	authorLabel = new QLabel(tr("Author: "));
 	titleLabel = new QLabel(tr("Title: "));
-	callLabel = new QLabel(tr("Call : "));
+	callLabel = new QLabel(tr("Call: "));
 	fullView = new QTableWidget;
 
 	gridLayout = new QGridLayout;
